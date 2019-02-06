@@ -36,17 +36,27 @@
                 </div>
               </div>
               <div class="csv_buttons">
-              <input type="button" name="export" value="CSV Export" class="btn btn-primary export"/>
-              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#importModal">CSV Import</button>
+              <input type="button" name="export" value="CSV Export" class="btn btn-info export"/>
+              <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#importModal">CSV Import</button>
               </div>
             </div>
             <div class="panel-body">
               <div id="display_data"></div>
             </div>
+            <div class="panel-footer">
+              <div class="page_tracker">
+                Page 1 of 1
+              </div>
+              <div class="page_navigation">
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <input type="hidden" id="results_per_page" value="5">
+    <input type="hidden" id="results_to_skip" value="0">
+    <input type="hidden" id="search_field_selected">
     <input type="hidden" id="row_id_selected">
   </div>
 
