@@ -47,7 +47,7 @@
         </div>
       </div>
     </div>
-
+    <input type="hidden" id="row_id_selected">
   </div>
 
   <div class="modal fade" id="messageModal" role="dialog">
@@ -57,7 +57,27 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Just a Moment...</h4>
         </div>
-        <div class="modal-body">  
+        <div class="modal-body text-center">  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="modal fade" id="deleteModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Just a Moment...</h4>
+        </div>
+        <div class="modal-body text-center">  
+          <p>Are you sure you want to delete the following user?</p>
+          <div class="clicked_user_name"></div>
+          <button type="button" id="btn_delete_confirmed" class="btn btn-danger" data-dismiss="modal">Yes</button>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

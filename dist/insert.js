@@ -52,7 +52,7 @@ $(document).on('click', '#btn_add', function() {
   }
 
   if(error_messages.length > 0) {
-    var error_list = $('<ul>');
+    var error_list = $('<ul>').addClass('validation_list');
     error_messages.forEach(function(error){
       var error_item = $('<li>').text(error);
       error_list.append(error_item);
@@ -87,6 +87,11 @@ $(document).on('click', '#btn_add', function() {
         $('.modal-body').text(message);
         $('#messageModal').modal({show:true});
         fetchData();
+      },
+      error: function() {
+        var message = `There was an error`;
+        $('.modal-body').text(message);
+        $('#messageModal').modal({show:true});
       }
     })
   }
