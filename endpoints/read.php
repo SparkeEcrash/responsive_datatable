@@ -1,5 +1,5 @@
 <?php
-require('./../database-connection.php');
+require_once('./../database-connection.php');
 
 if (!$connect) {
   echo "Error: Unable to connect to MySQL." . PHP_EOL;

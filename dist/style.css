@@ -23,3 +23,15 @@
   text-align: center;
   vertical-align: middle !important;
 }
+
+label {
+  margin-bottom: 0!important;
+}
+
+ul {
+  margin-bottom: 0!important;
+}
+.validation_list {
+  list-style-type: none;
+}
+

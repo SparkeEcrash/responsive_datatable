@@ -1,6 +1,6 @@
 <?php
 
-  require('./../database-connection.php');
+  require_once('./../database-connection.php');
   
   if(empty($_POST['fields'])) {
     $output = [
