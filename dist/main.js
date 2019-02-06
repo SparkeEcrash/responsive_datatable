@@ -7,10 +7,20 @@ $(document).on('click', '#search', function() {
 })
 
 $(document).on('change', '#image', function() {
-  console.log('picture uploaded');
-  var imageName = $(this).val();
-  imageName = /[^\\]*$/.exec(imageName)[0];
-  $('.image_title').html(imageName);
+  if($('#image').val()) {
+    var imageName = $(this).val();
+    imageName = /[^\\]*$/.exec(imageName)[0];
+    $('.image_title').html(imageName);
+    $('.remove_file_upload').show();
+    $('.custom_file_upload').hide();
+  }
+})
+
+$(document).on('click', '.remove_file_upload', function() {
+  $('.image_title').html('');
+  $('#image').val('');
+  $('.remove_file_upload').hide();
+  $('.custom_file_upload').show();
 })
 
 

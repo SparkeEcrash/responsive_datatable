@@ -8,6 +8,10 @@
                                   supported by Chrome and Opera */
 }
 
+.table {
+  margin-bottom: 0 !important;
+}
+
 .responsive_image {
   height: 20vh;
   width: 10vw;
@@ -17,11 +21,17 @@
   text-align: right !important;
 }
 
-.custom_file_upload {
+.custom_file_upload,
+.remove_file_upload {
   border: 1px solid #ccc;
   display: inline-block;
   padding: 6px 12px;
   cursor: pointer;
+}
+
+.remove_file_upload {
+  background-color: #f5f5f5;
+  display: none;
 }
 
 .center_content th {

@@ -73,7 +73,7 @@ $output .= '
         <td id="state" spellcheck="false" contenteditable>FL</td>
         <td id="zip_code" spellcheck="false" contenteditable>32444</td>
         <td id="email_address" spellcheck="false" contenteditable></td>
-        <td id="image_container"><label for="image" class="custom_file_upload">Image</label><input type="file" id="image" style="display: none;"/><div class="image_title"></div></td>
+        <td id="image_container"><label class="remove_file_upload">Remove</label><label for="image" class="custom_file_upload">Image</label><input type="file" id="image" style="display: none;"/><div class="image_title"></div></td>
         <td><button class="btn btn-success" id="btn_add">+</button></td>
       </tr>
     </tbody>
