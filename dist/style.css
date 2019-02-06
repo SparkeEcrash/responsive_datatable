@@ -1,0 +1,25 @@
+.responsive_image {
+  height: 20vh;
+  width: 10vw;
+}
+
+.csv_buttons {
+  text-align: right !important;
+}
+
+.custom_file_upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.center_content th {
+  text-align: center;
+  vertical-align: middle !important;
+}
+
+.center_content td {
+  text-align: center;
+  vertical-align: middle !important;
+}
