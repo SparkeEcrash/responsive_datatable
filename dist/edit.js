@@ -121,7 +121,7 @@ function edit_image(id, file) {
   data.append('image', $(file)[0].files[0]);  
   // new Response(data).text().then(console.log)
   $.ajax({
-    url:"./endpoints/edit.php",
+    url:"./endpoints/update.php",
     data: data, 
     dataType:'text',
     type: 'POST',
@@ -150,7 +150,7 @@ function edit_image(id, file) {
 
 function remove_image(id, column_name) {
   $.ajax({
-    url: "./endpoints/edit.php",
+    url: "./endpoints/update.php",
     method: 'POST',
     data: {id, column_name},
     dataType: 'text',
@@ -173,7 +173,7 @@ function remove_image(id, column_name) {
 
 function edit_data(id, text, column_name) {
   $.ajax({
-    url: "./endpoints/edit.php",
+    url: "./endpoints/update.php",
     method: "POST",
     data: {id, text, column_name},
     dataType: 'text',
@@ -188,11 +188,4 @@ function edit_data(id, text, column_name) {
       };
     }
   })
-}
-
-function popErrorModal() {
-  $('.modal-body').empty();
-  var error_message = $('<p>').text(`Something did not work correctly while processing`);
-  $('.modal-body').append(error_message);
-  $('#messageModal').modal({show:true});
 }
