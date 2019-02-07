@@ -1,5 +1,5 @@
 $(document).on('click', '#btn_delete', function() {
-  $('.modal-body').empty()
+  $('.modal-body').empty();
   var id = $(this).data('id');
   var first_name = $(this).parentsUntil('.center_content').siblings('.first_name').html();
   var last_name = $(this).parentsUntil('.center_content').siblings('.last_name').html();
@@ -28,9 +28,9 @@ $(document).on('click', '#btn_delete_confirmed', function() {
     url: './endpoints/delete.php',
     method: 'POST',
     data: {id},
-    dataType: 'text',
+    dataType: 'json',
     success: function (data) {
-      result = JSON.parse(data);
+      result = data;
       var message = `${result.name} was deleted`;
       $('.modal-body').text(message);
       fetchData();

@@ -32,7 +32,7 @@ if(!$result) {
     'name' => $row['first_name'] . ' ' . $row['last_name'],
     'message' => 'no image to delete'
   ];
-  $json_output = $json_encode($output);
+  $json_output = json_encode($output);
   print($json_output);
 }
 

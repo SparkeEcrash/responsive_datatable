@@ -29,6 +29,7 @@ function fetchData() {
   $.ajax({
     url: "./endpoints/read.php",
     method: "POST",
+    // dataType: text or json??
     success: function(data) {
       $('#display_data').html(data);
     }
