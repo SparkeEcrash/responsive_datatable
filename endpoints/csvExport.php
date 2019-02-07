@@ -45,6 +45,9 @@ if($_SERVER['REQUEST_METHOD'] === 'GET'){
   header('Content-Type: text/csv');
   header('Content-Disposition: attachment; filename=user_list.csv');
 
+  // $csv = fopen("user_list.csv", "w");
+  // the above line makes a user_list.csv in the same folder as csvExport.php
+
   $csv = fopen("php://output", "w");
   fputcsv($csv, array("First Name", "Last Name", "Telephone Number", "Street", "City", "State", "Zip_Code", "Email_Address"), ',');
   $query = "SELECT first_name, last_name, telephone_number, street, city, state, zip_code, email_address from $table WHERE csv_export='1' ORDER BY first_name ASC";
