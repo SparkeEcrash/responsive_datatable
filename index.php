@@ -38,8 +38,9 @@
                 </div>
               </div>
               <div class="csv_buttons">
-              <input type="button" name="export" value="CSV Export" class="btn btn-info export"/>
-              <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#importModal">CSV Import</button>
+              <!-- <input type="button" name="export" value="CSV Export" class="btn btn-info"/> -->
+              <!-- <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#importModal">CSV Import</button> -->
+              <button type="button" class="btn btn-info" id="export">CSV Export</button>
               </div>
             </div>
             <div class="panel-body">

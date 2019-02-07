@@ -40,7 +40,11 @@ if(mysqli_num_rows($result) > 0) {
   while($row = mysqli_fetch_array($result)){
     $output .= '
       <tr class="center_content">
-        <td><input type="checkbox" data-section="'.$row['id'].'" class="check_status" name="section" value="checked" tabindex="-1"/></td>
+        <td><input type="checkbox" data-id="'.$row['id'].'" class="check_status" name="csv_checkbox" value="checked" tabindex="-1" ';
+  if($row['csv_export'] === "1") {
+    $output .= 'checked';       
+  }
+    $output .= '/></td>
         <td class="edit_cell first_name" data-id="'.$row['id'].'" spellcheck="false" contenteditable>'.$row['first_name'].'</td>
         <td class="edit_cell last_name" data-id="'.$row['id'].'" spellcheck="false" contenteditable>'.$row['last_name'].'</td>
         <td class="edit_cell telephone_number" data-id="'.$row['id'].'" spellcheck="false" contenteditable>'.$row['telephone_number'].'</td>
