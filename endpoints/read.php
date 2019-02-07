@@ -40,19 +40,27 @@ if(mysqli_num_rows($result) > 0) {
   while($row = mysqli_fetch_array($result)){
     $output .= '
       <tr class="center_content">
-        <td><input type="checkbox" data-section="'.$row['id'].'" class="check_status" name="section" value="checked"/></td>
-        <td class="first_name" data-id="'.$row['id'].'" spellcheck="false" contenteditable>'.$row['first_name'].'</td>
-        <td class="last_name" data-id="'.$row['id'].'" spellcheck="false" contenteditable>'.$row['last_name'].'</td>
-        <td class="telephone_number" data-id="'.$row['id'].'" spellcheck="false" contenteditable>'.$row['telephone_number'].'</td>
-        <td class="street" data-id="'.$row['id'].'" spellcheck="false" contenteditable>'.$row['street'].'</td>
-        <td class="city" data-id="'.$row['id'].'" spellcheck="false"contenteditable>'.$row['city'].'</td>
-        <td class="state" data-id="'.$row['id'].'" spellcheck="false" contenteditable>'.$row['state'].'</td>
-        <td class="zip_code" data-id="'.$row['id'].'" spellcheck="false" contenteditable>'.$row['zip_code'].'</td>
-        <td class="email_address" data-id="'.$row['id'].'" spellcheck="false" contenteditable>'.$row['email_address'].'</td>
-        <td class="image_wrap" data-id="'.$row['id'].'"><img class="responsive_image" src="images/'.$row['image'].'"/></td>
-        <td><button class="btn btn-danger" id="btn_delete" data-id="'.$row['id'].'">x</button></td>
-      </tr>
-    ';
+        <td><input type="checkbox" data-section="'.$row['id'].'" class="check_status" name="section" value="checked" tabindex="-1"/></td>
+        <td class="edit_cell first_name" data-id="'.$row['id'].'" spellcheck="false" contenteditable>'.$row['first_name'].'</td>
+        <td class="edit_cell last_name" data-id="'.$row['id'].'" spellcheck="false" contenteditable>'.$row['last_name'].'</td>
+        <td class="edit_cell telephone_number" data-id="'.$row['id'].'" spellcheck="false" contenteditable>'.$row['telephone_number'].'</td>
+        <td class="edit_cell street" data-id="'.$row['id'].'" spellcheck="false" contenteditable>'.$row['street'].'</td>
+        <td class="edit_cell city" data-id="'.$row['id'].'" spellcheck="false"contenteditable>'.$row['city'].'</td>
+        <td class="edit_cell state" data-id="'.$row['id'].'" spellcheck="false" contenteditable>'.$row['state'].'</td>
+        <td class="edit_cell zip_code" data-id="'.$row['id'].'" spellcheck="false" contenteditable>'.$row['zip_code'].'</td>
+        <td class="edit_cell email_address" data-id="'.$row['id'].'" spellcheck="false" contenteditable>'.$row['email_address'].'</td>
+        <td class="image_wrap" data-id="'.$row['id'].'" tabindex="-1">';
+      //if picture exists
+  if($row['image'] === '') {
+    $output .= '
+      <div class="add_image" id="edit_image">Add Image</div></td>';
+  } else {
+    $output .= '
+      <img class="responsive_image" src="images/'.$row['image'].'"/><div class="edit_image" id="edit_image">Replace</div><div class="remove_image" id="remove_image">Remove</div></td>';
+  }
+    $output .= '
+      <td><button class="btn btn-danger" id="btn_delete" data-id="'.$row['id'].'" tabindex="-1"><span class="glyphicon glyphicon-remove" aria-hidden="true"></button></td>
+      </tr>';
   }
 } else {
   $output .= '
@@ -65,16 +73,16 @@ if(mysqli_num_rows($result) > 0) {
 $output .= '
       <tr class="center_content">
         <td></td>
-        <td id="first_name" spellcheck="false" contenteditable>mickey</td>
-        <td id="last_name" spellcheck="false" contenteditable>mouse</td>
-        <td id="telephone_number" spellcheck="false" contenteditable>333-333-3333</td>
-        <td id="street" spellcheck="false" contenteditable>124 Disney Drive</td>
-        <td id="city" spellcheck="false"contenteditable>Miami</td>
-        <td id="state" spellcheck="false" contenteditable>FL</td>
-        <td id="zip_code" spellcheck="false" contenteditable>32444</td>
-        <td id="email_address" spellcheck="false" contenteditable></td>
+        <td id="first_name" class="insert_cell" spellcheck="false" contenteditable>mickey</td>
+        <td id="last_name" class="insert_cell" spellcheck="false" contenteditable>mouse</td>
+        <td id="telephone_number" class="insert_cell" spellcheck="false" contenteditable>333-333-3333</td>
+        <td id="street" class="insert_cell" spellcheck="false" contenteditable>124 Disney Drive</td>
+        <td id="city" class="insert_cell" spellcheck="false"contenteditable>Miami</td>
+        <td id="state" class="insert_cell" spellcheck="false" contenteditable>FL</td>
+        <td id="zip_code" class="insert_cell" spellcheck="false" contenteditable>32444</td>
+        <td id="email_address" class="insert_cell" spellcheck="false" contenteditable></td>
         <td id="image_container"><label class="remove_file_upload">Remove</label><label for="image" class="custom_file_upload">Image</label><input type="file" id="image" style="display: none;"/><div class="image_title"></div></td>
-        <td><button class="btn btn-success" id="btn_add">+</button></td>
+        <td><button class="btn btn-success" id="btn_add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></button></td>
       </tr>
     </tbody>
   </table>

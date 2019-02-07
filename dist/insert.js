@@ -48,7 +48,7 @@ $(document).on('click', '#btn_add', function() {
 
   if(image == '')
   {
-    error_messages.push('Please select an Image')
+    // error_messages.push('Please select an Image')
   }
 
   if(error_messages.length > 0) {
@@ -74,6 +74,7 @@ $(document).on('click', '#btn_add', function() {
     data.append('image', $('#image')[0].files[0]);
     fields = JSON.stringify(fields);
     data.append('fields', fields);
+    // new Response(data).text().then(console.log)
     $.ajax({
       url:"./endpoints/create.php",
       data: data,
@@ -96,5 +97,10 @@ $(document).on('click', '#btn_add', function() {
     })
   }
 })
+
+$(document).on('blur', '.insert_cell', function() {
+  $(this).text(($(this).text().trim()));
+})
+
 
 {/* <td class="image_wrap" data-id09="'.$row['id'].'"><img class="responsive_image" src="images/'.$row['image'].'"/></td> */}

@@ -12,11 +12,6 @@
   margin-bottom: 0 !important;
 }
 
-.responsive_image {
-  height: 20vh;
-  width: 10vw;
-}
-
 .csv_buttons {
   text-align: right !important;
 }
@@ -51,7 +46,70 @@ label {
 ul {
   margin-bottom: 0!important;
 }
+
+p {
+  margin-bottom: 0!important;
+}
+
+td {
+  outline: none;
+}
+
+#btn_delete,
+#btn_add {
+  text-align: center;
+}
+
+#btn_delete_confirmed,
+#btn_delete_image_confirmed {
+  margin-top: 10px;
+}
+
 .validation_list {
   list-style-type: none;
 }
 
+.add_image,
+.edit_image,
+.remove_image {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.edit_image,
+.remove_image {
+  display: none;
+}
+
+.add_image:hover,
+.edit_image:hover,
+.remove_image:hover {
+  font-weight: bold;
+}
+
+.responsive_image {
+  height: 20vh;
+  width: 10vw;
+}
+
+.edit_image {
+  margin-top: 6vh;
+  margin-bottom: 1vh;
+}
+
+.remove_image {
+  margin-top: 1vh;
+  margin-bottom: 6vh;
+
+}
+
+.image_wrap:hover .edit_image,
+.image_wrap:hover .remove_image {
+  display: block;
+}
+
+.image_wrap:hover .responsive_image {
+  display: none;
+}

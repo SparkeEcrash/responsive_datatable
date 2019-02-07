@@ -13,6 +13,8 @@
   <script src="./vendor/jquery.min.js" type="text/javascript"></script>
   <script src="./vendor/bootstrap/bootstrap.min.js" type="text/javascript"></script>
   <link href="./vendor/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+  <link href="vendor/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css">
+
 </head>
 <body>
   <div id="wrapper">
@@ -20,7 +22,7 @@
     <div id="page-wrapper" class="container">
       <div class="row">
         <div class="col-xs-12">
-          <h1 class="page-header">PHP MySql Datatable</h1>
+          <h1 class="page-header">James's PHP MySQL Responsive Datatable</h1>
         </div>
       </div>
       <div class="row">
@@ -57,7 +59,9 @@
     <input type="hidden" id="results_per_page" value="5">
     <input type="hidden" id="results_to_skip" value="0">
     <input type="hidden" id="search_field_selected">
+    <input type="hidden" id="data_cell_selected">
     <input type="hidden" id="row_id_selected">
+    <input id="image_file_selected" type="file" style="display: none;" />
   </div>
 
   <div class="modal fade" id="messageModal" role="dialog">
@@ -103,4 +107,5 @@
 <script src="./dist/main.js" type="text/javascript"></script>
 <script src="./dist/insert.js" type="text/javascript"></script>
 <script src="./dist/delete.js" type="text/javascript"></script>
+<script src="./dist/edit.js" type="text/javascript"></script>
 
