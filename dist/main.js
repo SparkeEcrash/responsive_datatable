@@ -3,7 +3,8 @@ $(document).ready(function() {
 })
 
 $(document).on('click', '#search', function() {
-  filterList();
+  let search_value = $('#global_filter').val().trim();
+  fetchData(search_value);
 })
 
 $(document).on('change', '#image', function() {
@@ -46,16 +47,17 @@ $(document).on('click', '#export', function() {
   })
 })
 
-function fetchData() {
+function fetchData(text='', column=null) {
   $.ajax({
     url: "./endpoints/read.php",
     method: "POST",
-    // dataType: text or json??
+    data: {search_value: text},
     success: function(data) {
       $('#display_data').html(data);
     }
   });
-}
+} 
+
 
 function toggleCSV(id, status) {
   $.ajax({
@@ -69,11 +71,6 @@ function toggleCSV(id, status) {
       }
     }
   })
-}
-
-function filterList() {
-  // $('#users_table').DataTable().search(
-  //   $('#global_filter').val()).draw();
 }
 
 function popErrorModal(text=`Something did not work correctly while processing`, list=[]) {

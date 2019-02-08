@@ -13,7 +13,16 @@ if (!$connect) {
 // }
 
 $output = '';
-$sql= "SELECT * FROM $table ORDER BY id DESC";
+
+if ($_POST['search_value'] === '') {
+  $sql= "SELECT * FROM $table";
+}  else {
+  $search = $_POST['search_value'];
+  $sql = "SELECT * FROM $table WHERE (first_name LIKE '%".$search."%') OR (last_name LIKE '%".$search."%') OR (telephone_number LIKE '%".$search."%') OR (street LIKE '%".$search."%') OR (city LIKE '%".$search."%') OR (state LIKE '%".$search."%') OR (zip_code LIKE '%".$search."%') OR (email_address LIKE '%".$search."%')";
+}
+
+$sql .= " ORDER BY first_name ASC";
+
 $result = mysqli_query($connect, $sql);
 
 $output .= '
@@ -70,7 +79,7 @@ if(mysqli_num_rows($result) > 0) {
 } else {
   $output .= '
     <tr>
-      <td colspan="4">Data is empty</td>
+      <td class="empty_cell" colspan="12"><h1>Data is empty</h1></td>
     </tr>
   ';
 }
