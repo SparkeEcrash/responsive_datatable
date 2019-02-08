@@ -32,6 +32,8 @@ function validateTelephoneNumber(telephone_number) {
     telephone_number_errors.push('Please enter the Telephone Number');
   }
 
+  let reformatted_telephone_number = telephone_number;
+
   const regexp = /\d/;
   telephone_number = telephone_number.split('');
   let temp_telephone_number = '';
@@ -43,9 +45,9 @@ function validateTelephoneNumber(telephone_number) {
 
   if(temp_telephone_number.length !== 10) {
     telephone_number_errors.push('Please enter only 10 digits for the Telephone Number');
+  } else {
+    reformatted_telephone_number = `${temp_telephone_number.substring(0,3)}-${temp_telephone_number.substring(3,6)}-${temp_telephone_number.substring(6,10)}`;
   }
-
-  const reformatted_telephone_number = `${temp_telephone_number.substring(0,3)}-${temp_telephone_number.substring(3,6)}-${temp_telephone_number.substring(6,10)}`;
 
   return ({
     reformed_input: reformatted_telephone_number,
@@ -85,6 +87,7 @@ function validateCity(city) {
 
 function validateState(state) {
   const state_errors = [];
+  let reformatted_state = '';
 
   if(state === '') {
     state_errors.push('Please enter the State');
@@ -297,10 +300,10 @@ function validateState(state) {
       reformatted_state = 'WY'
       break;
     default:
-      reformatted_state = 'error'
+      reformatted_state = state
   }
 
-  if(reformatted_state === 'error') {
+  if(reformatted_state.length !== 2) {
     state_errors.push('Please enter a valid state from the United States of America');
   }
 
@@ -312,6 +315,7 @@ function validateState(state) {
 
 function validateZipCode(zip_code) {
   const zip_code_errors = [];
+  let reformatted_zip_code = zip_code;
   if(zip_code === '') {
     zip_code_errors.push('Please enter the Zip Code');
   }
@@ -325,11 +329,13 @@ function validateZipCode(zip_code) {
     }
   });
 
+  
+
   if(temp_zip_code.length !== 5) {
     zip_code_errors.push('Please enter only 5 digits for the Zip Code');
+  } else {
+    reformatted_zip_code = temp_zip_code;
   }
-
-  const reformatted_zip_code = temp_zip_code;
 
   return ({
     reformed_input: reformatted_zip_code,

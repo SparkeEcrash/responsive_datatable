@@ -7,14 +7,7 @@ $(document).on('blur', '.first_name', function() {
   const first_name = $(this).text().trim();
   const first_name_validation = validateFirstName(first_name);
   if(first_name_validation['errors'].length > 0) {
-    $('.modal-body').empty();
-    const error_list = $('<ul>').addClass('validation_list');
-    first_name_validation['errors'].forEach(function(error){
-      const error_item = $('<li>').text(error);
-      error_list.append(error_item);
-    });
-    $('.modal-body').append(error_list);
-    $('#messageModal').modal({show:true});
+    popErrorModal(null, first_name_validation['errors']);
   } else if(first_name !== $('#data_cell_selected').val()) {
     var id = $(this).data('id');
     edit_data(id, first_name_validation['reformed_input'], 'first_name');
@@ -23,66 +16,91 @@ $(document).on('blur', '.first_name', function() {
 })
 
 $(document).on('blur', '.last_name', function() {
-  var last_name = $(this).text().trim();
-  if(last_name !== $('#data_cell_selected').val()) {
+  const last_name = $(this).text().trim();
+  const last_name_validation = validateLastName(last_name);
+  if(last_name_validation['errors'].length > 0) {
+    popErrorModal(null, last_name_validation['errors']);
+  } else if(last_name !== $('#data_cell_selected').val()) {
     var id = $(this).data('id');
-    edit_data(id, last_name, 'last_name');
+    edit_data(id, last_name_validation['reformed_input'], 'last_name');
   }
-  $(this).text(last_name);
+  $(this).text(last_name_validation['reformed_input']);
 })
 
 $(document).on('blur', '.telephone_number', function() {
-  var telephone_number = $(this).text().trim();
-  if(telephone_number !== $('#data_cell_selected').val()) {
+  const telephone_number = $(this).text().trim();
+  const telephone_number_validation = validateTelephoneNumber(telephone_number);
+  if(telephone_number_validation['errors'].length > 0) {
+    popErrorModal(null, telephone_number_validation['errors']);
+    $(this).text(telephone_number_validation['reformed_input']).css({ 'color': 'red' });
+  } else if(telephone_number !== $('#data_cell_selected').val()) {
     var id = $(this).data('id');
-    edit_data(id, telephone_number, 'telephone_number');
+    edit_data(id, telephone_number_validation['reformed_input'], 'telephone_number');
+    $(this).text(telephone_number_validation['reformed_input']).css({ 'color': 'black' });
   }
-  $(this).text(telephone_number);
 })
 
 $(document).on('blur', '.street', function() {
-  var street = $(this).text().trim();
-  if(street !== $('#data_cell_selected').val()) {
+  const street = $(this).text().trim();
+  const street_validation = validateStreet(street);
+  if(street_validation['errors'].length > 0) {
+    popErrorModal(null, street_validation['errors']);
+  } else if (street !== $('#data_cell_selected').val()) {
     var id = $(this).data('id');
-    edit_data(id, street, 'street');
+    edit_data(id, street_validation['reformed_input'], 'street');
   }
-  $(this).text(street);
+  $(this).text(street_validation['reformed_input']);
 })
 
 $(document).on('blur', '.city', function() {
-  var city = $(this).text().trim();
-  if(city !== $('#data_cell_selected').val()) {
+  const city = $(this).text().trim();
+  const city_validation = validateCity(city);
+  if(city_validation['errors'].length > 0) {
+    popErrorModal(null, city_validation['errors']);
+  } else if (city !== $('#data_cell_selected').val()) {
     var id = $(this).data('id');
-    edit_data(id, city, 'city');
+    edit_data(id, city_validation['reformed_input'], 'city');
   }
-  $(this).text(city);
+  $(this).text(city_validation['reformed_input']);
 })
 
 $(document).on('blur', '.state', function() {
-  var state = $(this).text().trim();
-  if(state !== $('#data_cell_selected').val()) {
+  const state = $(this).text().trim();
+  const state_validation = validateState(state);
+  if(state_validation['errors'].length > 0) {
+    popErrorModal(null, state_validation['errors']);
+    $(this).text(state_validation['reformed_input']).css({ 'color': 'red' });
+  } else if (state !== $('#data_cell_selected').val()) {
     var id = $(this).data('id');
-    edit_data(id, state, 'state');
+    edit_data(id, state_validation['reformed_input'], 'state');
+    $(this).text(state_validation['reformed_input']).css({ 'color': 'black' });
   }
-  $(this).text(state);
 })
 
 $(document).on('blur', '.zip_code', function() {
-  var zip_code = $(this).text().trim();
-  if(zip_code !==$('#data_cell_selected').val()) {
+  const zip_code = $(this).text().trim();
+  const zip_code_validation = validateZipCode(zip_code);
+  if(zip_code_validation['errors'].length > 0) {
+    popErrorModal(null, zip_code_validation['errors']);
+    $(this).text(zip_code_validation['reformed_input']).css({ 'color': 'red' });
+  } else if (zip_code !== $('#data_cell_selected').val()) {
     var id = $(this).data('id');
-    edit_data(id, zip_code, 'zip_code');
+    edit_data(id, zip_code_validation['reformed_input'], 'zip_code');
+    $(this).text(zip_code_validation['reformed_input']).css({ 'color': 'black' });
   }
-  $(this).text(zip_code);
 })
 
 $(document).on('blur', '.email_address', function() {
-  var email_address = $(this).text().trim();
-  if(email_address !== $('#data_cell_selected').val()) {
+  const email_address = $(this).text().trim();
+  const email_address_validation = validateEmailAddress(email_address);
+  if(email_address_validation['errors'].length > 0) {
+    popErrorModal(null, email_address_validation['errors']);
+    $(this).text(email_address_validation['reformed_input']).css({ 'color': 'red' });
+  } else if (email_address !== $('#data_cell_selected').val()) {
     var id = $(this).data('id');
-    edit_data(id, email_address, 'email_address');
+    edit_data(id, email_address_validation['reformed_input'], 'email_address');
+    $(this).text(email_address_validation['reformed_input']).css({ 'color': 'black' });
   }
-  $(this).text(email_address);
 })
 
 $(document).on('click','#edit_image',function(){
