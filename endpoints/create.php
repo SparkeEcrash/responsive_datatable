@@ -12,6 +12,14 @@
     exit();
   } else {
     $_POST = json_decode($_POST['fields'], true);
+    $first_name = addslashes($_POST["first_name"]);
+    $last_name = addslashes($_POST["last_name"]);
+    $telephone_number = addslashes($_POST["telephone_number"]);
+    $street = addslashes($_POST["street"]);
+    $city = addslashes($_POST["city"]);
+    $state = addslashes($_POST["state"]);
+    $zip_code = addslashes($_POST["zip_code"]);
+    $email_address = addslashes($_POST["email_address"]);
   }
 
   if ($_FILES) {
@@ -32,7 +40,7 @@
     $image_name = '';
   }
 
-  $sql = "INSERT INTO $table(first_name, last_name, telephone_number, street, city, state, zip_code, email_address, image) VALUES('".$_POST["first_name"]."', '".$_POST["last_name"]."', '".$_POST["telephone_number"]."', '".$_POST["street"]."', '".$_POST["city"]."', '".$_POST["state"]."', '".$_POST["zip_code"]."', '".$_POST["email_address"]."', '".$image_name."')";
+  $sql = "INSERT INTO $table(first_name, last_name, telephone_number, street, city, state, zip_code, email_address, image) VALUES('".$first_name."', '".$last_name."', '".$telephone_number."', '".$street."', '".$city."', '".$state."', '".$zip_code."', '".$email_address."', '".$image_name."')";
   if(mysqli_query($connect, $sql))
   {
     $output = [

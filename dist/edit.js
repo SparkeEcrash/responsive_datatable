@@ -182,11 +182,9 @@ function remove_image(id, column_name) {
     data: {id, column_name},
     dataType: 'text',
     success: function(data) {
-      console.log(data);
       $('#image_file_selected').val('');
       fetchData();
       if(data === "1") {
-        console.log(data);
         $('.modal-body').empty();
         var removed_image_message = $('<p>').text(`Image was removed`);
         $('.modal-body').append(removed_image_message);
