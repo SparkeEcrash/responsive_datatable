@@ -45,7 +45,7 @@ function validateTelephoneNumber(telephone_number) {
     telephone_number_errors.push('Please enter only 10 digits for the Telephone Number');
   }
 
-  const reformatted_telephone_number = `(${temp_telephone_number.substring(0,3)}) ${temp_telephone_number.substring(3,6)}-${temp_telephone_number.substring(6,10)}`;
+  const reformatted_telephone_number = `${temp_telephone_number.substring(0,3)}-${temp_telephone_number.substring(3,6)}-${temp_telephone_number.substring(6,10)}`;
 
   return ({
     reformed_input: reformatted_telephone_number,
@@ -122,6 +122,9 @@ function validateState(state) {
       reformatted_state = 'CT'
       break;
     case 'DELAWARE':
+    case 'DC':
+      reformatted_state = 'DC'
+      break;
     case 'DE':
       reformatted_state = 'DE'
       break;

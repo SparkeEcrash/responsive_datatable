@@ -4,13 +4,22 @@ $(document).on('focus', '.edit_cell', function() {
 })
 
 $(document).on('blur', '.first_name', function() {
-  var first_name = $(this).text().trim();
-  console.log('first named triggered');
-  if(first_name !== $('#data_cell_selected').val()) {
+  const first_name = $(this).text().trim();
+  const first_name_validation = validateFirstName(first_name);
+  if(first_name_validation['errors'].length > 0) {
+    $('.modal-body').empty();
+    const error_list = $('<ul>').addClass('validation_list');
+    first_name_validation['errors'].forEach(function(error){
+      const error_item = $('<li>').text(error);
+      error_list.append(error_item);
+    });
+    $('.modal-body').append(error_list);
+    $('#messageModal').modal({show:true});
+  } else if(first_name !== $('#data_cell_selected').val()) {
     var id = $(this).data('id');
-    edit_data(id, first_name, 'first_name');
+    edit_data(id, first_name_validation['reformed_input'], 'first_name');
   }
-  $(this).text(first_name);
+  $(this).text(first_name_validation['reformed_input']);
 })
 
 $(document).on('blur', '.last_name', function() {
