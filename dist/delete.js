@@ -38,6 +38,7 @@ $(document).on('click', '#btn_delete_confirmed', function() {
     error: function() {
       var message = `There was an error`;
       $('.modal-body').text(message);
+      fetchData();
     }
   })
 

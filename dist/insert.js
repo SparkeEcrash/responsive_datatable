@@ -108,6 +108,3 @@ $(document).on('click', '#btn_add', function() {
 $(document).on('blur', '.insert_cell', function() {
   $(this).text(($(this).text().trim()));
 })
-
-
-{/* <td class="image_wrap" data-id09="'.$row['id'].'"><img class="responsive_image" src="images/'.$row['image'].'"/></td> */}

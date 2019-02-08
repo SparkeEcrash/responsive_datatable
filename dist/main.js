@@ -73,9 +73,9 @@ function filterList() {
   //   $('#global_filter').val()).draw();
 }
 
-function popErrorModal() {
+function popErrorModal(text=`Something did not work correctly while processing`) {
   $('.modal-body').empty();
-  var error_message = $('<p>').text(`Something did not work correctly while processing`);
+  var error_message = $('<p>').text(text);
   $('.modal-body').append(error_message);
   $('#messageModal').modal({show:true});
 }
