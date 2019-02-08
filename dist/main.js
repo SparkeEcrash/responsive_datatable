@@ -7,6 +7,13 @@ $(document).on('click', '#search', function() {
   fetchData(search_value);
 })
 
+$(document).on('keypress', '#global_filter', function(e) {
+  if (e.which === 13) {
+    let search_value = $('#global_filter').val().trim();
+    fetchData(search_value);
+  }
+})
+
 $(document).on('change', '#image', function() {
   if($('#image').val()) {
     var imageName = $(this).val();

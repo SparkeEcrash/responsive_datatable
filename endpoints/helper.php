@@ -8,6 +8,6 @@
         mysqli_use_result($link); 
         mysqli_next_result($link);
     }
-    echo mysqli_store_result($link);
+    return mysqli_store_result($link);
   }
 ?>

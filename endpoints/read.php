@@ -17,7 +17,7 @@ $output = '';
 if ($_POST['search_value'] === '') {
   $sql= "SELECT * FROM $table";
 }  else {
-  $search = addslahes($_POST['search_value']);
+  $search = addslashes($_POST['search_value']);
   $sql = "SELECT * FROM $table WHERE (first_name LIKE '%".$search."%') OR (last_name LIKE '%".$search."%') OR (telephone_number LIKE '%".$search."%') OR (street LIKE '%".$search."%') OR (city LIKE '%".$search."%') OR (state LIKE '%".$search."%') OR (zip_code LIKE '%".$search."%') OR (email_address LIKE '%".$search."%')";
 }
 
@@ -87,13 +87,13 @@ if(mysqli_num_rows($result) > 0) {
 $output .= '
       <tr class="center_content">
         <td></td>
-        <td id="first_name" class="insert_cell" spellcheck="false" contenteditable>mickey</td>
-        <td id="last_name" class="insert_cell" spellcheck="false" contenteditable>mouse</td>
-        <td id="telephone_number" class="insert_cell" spellcheck="false" contenteditable>333-333-3333</td>
-        <td id="street" class="insert_cell" spellcheck="false" contenteditable>124 Disney Drive</td>
-        <td id="city" class="insert_cell" spellcheck="false"contenteditable>Miami</td>
-        <td id="state" class="insert_cell" spellcheck="false" contenteditable>FL</td>
-        <td id="zip_code" class="insert_cell" spellcheck="false" contenteditable>32444</td>
+        <td id="first_name" class="insert_cell" spellcheck="false" contenteditable></td>
+        <td id="last_name" class="insert_cell" spellcheck="false" contenteditable></td>
+        <td id="telephone_number" class="insert_cell" spellcheck="false" contenteditable></td>
+        <td id="street" class="insert_cell" spellcheck="false" contenteditable></td>
+        <td id="city" class="insert_cell" spellcheck="false"contenteditable></td>
+        <td id="state" class="insert_cell" spellcheck="false" contenteditable></td>
+        <td id="zip_code" class="insert_cell" spellcheck="false" contenteditable></td>
         <td id="email_address" class="insert_cell" spellcheck="false" contenteditable></td>
         <td id="image_container"><label class="remove_file_upload">Remove</label><label for="image" class="custom_file_upload">Image</label><input type="file" id="image" style="display: none;"/><div class="image_title"></div></td>
         <td><button class="btn btn-success" id="btn_add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></button></td>
