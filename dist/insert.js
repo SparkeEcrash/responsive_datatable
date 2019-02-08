@@ -1,76 +1,83 @@
 $(document).on('click', '#btn_add', function() {
   $('.modal-body').empty()
 
-  var first_name = $('#first_name').text();
-  var last_name = $('#last_name').text();
-  var telephone_number = $('#telephone_number').text();
-  var street = $('#street').text();
-  var city = $('#city').text();
-  var state = $('#state').text();
-  var zip_code = $('#zip_code').text();
-  var email_address = $('#email_address').text();
-  var image = $('#image').val();
-  var error_messages = [];
+  const first_name = $('#first_name').text();
+  const last_name = $('#last_name').text();
+  const telephone_number = $('#telephone_number').text();
+  const street = $('#street').text();
+  const city = $('#city').text();
+  const state = $('#state').text();
+  const zip_code = $('#zip_code').text();
+  const email_address = $('#email_address').text();
+  const image = $('#image').val();
+  const error_messages = [];
   
+  const first_name_validation = validateFirstName(first_name);
+  const last_name_validation = validateLastName(last_name);
+  const telephone_number_validation = validateTelephoneNumber(telephone_number);
+  const street_validation = validateStreet(street);
+  const city_validation = validateCity(city);
+  const state_validation = validateState(state);
+  const zip_code_validation = validateZipCode(zip_code);
+  const email_address_validation = validateEmailAddress(email_address);
+  const image_validation = validateImage(image);
 
-  
-  if(first_name == '') {
-    error_messages.push('Please enter the First Name');
-  }
+  first_name_validation['errors'].forEach(function(error) {
+    error_messages.push(error);
+  })
 
-  if(last_name == '') {
-    error_messages.push('Please enter the Last Name');
-  }
+  last_name_validation['errors'].forEach(function(error) {
+    error_messages.push(error);
+  })
 
-  if(telephone_number == '') {
-    error_messages.push('Please enter the Telephone Number');
-  }
+  telephone_number_validation['errors'].forEach(function(error) {
+    error_messages.push(error);
+  })
 
-  if(street == '') {
-    error_messages.push('Please enter the Street');
-  }
+  street_validation['errors'].forEach(function(error) {
+    error_messages.push(error);
+  })
 
-  if(city == '') {
-    error_messages.push('Please enter the City');
-  }
+  city_validation['errors'].forEach(function(error) {
+    error_messages.push(error);
+  })
 
-  if(state =='') {
-    error_messages.push('Please enter the State');
-  }
+  state_validation['errors'].forEach(function(error) {
+    error_messages.push(error);
+  })
 
-  if(zip_code == '') {
-    error_messages.push('Please enter the Zip Code')
-  }
+  zip_code_validation['errors'].forEach(function(error) {
+    error_messages.push(error);
+  })
 
-  if(email_address == '') {
-    error_messages.push('Please enter the Email Address')
-  }
+  email_address_validation['errors'].forEach(function(error) {
+    error_messages.push(error);
+  })
 
-  if(image == '')
-  {
-    // error_messages.push('Please select an Image')
-  }
+  image_validation['errors'].forEach(function(error) {
+    error_messages.push(error);
+  })
 
   if(error_messages.length > 0) {
-    var error_list = $('<ul>').addClass('validation_list');
+    const error_list = $('<ul>').addClass('validation_list');
     error_messages.forEach(function(error){
-      var error_item = $('<li>').text(error);
+      const error_item = $('<li>').text(error);
       error_list.append(error_item);
     });
     $('.modal-body').append(error_list);
     $('#messageModal').modal({show:true});
   } else {
-    var fields = {
-      first_name,
-      last_name,
-      telephone_number,
-      street,
-      city,
-      state,
-      zip_code,
-      email_address
+    let fields = {
+      first_name: first_name_validation['reformed_input'],
+      last_name: last_name_validation['reformed_input'],
+      telephone_number: telephone_number_validation['reformed_input'],
+      street: street_validation['reformed_input'],
+      city: city_validation['reformed_input'],
+      state: state_validation['reformed_input'],
+      zip_code: zip_code_validation['reformed_input'],
+      email_address: email_address_validation['reformed_input']
     };
-    var data = new FormData();
+    const data = new FormData();
     data.append('image', $('#image')[0].files[0]);
     fields = JSON.stringify(fields);
     data.append('fields', fields);
@@ -84,13 +91,13 @@ $(document).on('click', '#btn_add', function() {
       contentType: false,
       cache: false,
       success: function(data) {
-        var message = `${first_name} ${last_name} was added to the list`;
+        const message = `${first_name} ${last_name} was added to the list`;
         $('.modal-body').text(message);
         $('#messageModal').modal({show:true});
         fetchData();
       },
       error: function() {
-        var message = `There was an error`;
+        const message = `There was an error`;
         $('.modal-body').text(message);
         $('#messageModal').modal({show:true});
       }

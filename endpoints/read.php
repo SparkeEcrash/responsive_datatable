@@ -20,7 +20,8 @@ $output .= '
   <table id="users_table" class="table table-striped table-bordered">
     <thead>
       <tr class="center_content">
-        <th width="5%"><input type="checkbox" onchange="checkAll(this)" name="chk[]"/></th>
+        <!-- <th width="5%"><input type="checkbox" onchange="checkAll(this)" name="chk[]"/></th> --!>
+        <th width="5%"></th>
         <th>First Name</th>
         <th>Last Name</th>
         <th>Telephone Number</th>

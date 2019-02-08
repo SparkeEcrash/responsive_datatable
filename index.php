@@ -109,4 +109,5 @@
 <script src="./dist/insert.js" type="text/javascript"></script>
 <script src="./dist/delete.js" type="text/javascript"></script>
 <script src="./dist/edit.js" type="text/javascript"></script>
+<script src="./dist/validation.js" type="text/javascript"></script>
 
