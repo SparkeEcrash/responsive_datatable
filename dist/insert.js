@@ -59,13 +59,7 @@ $(document).on('click', '#btn_add', function() {
   })
 
   if(error_messages.length > 0) {
-    const error_list = $('<ul>').addClass('validation_list');
-    error_messages.forEach(function(error){
-      const error_item = $('<li>').text(error);
-      error_list.append(error_item);
-    });
-    $('.modal-body').append(error_list);
-    $('#messageModal').modal({show:true});
+    popErrorModal(null, error_messages);
   } else {
     let fields = {
       first_name: first_name_validation['reformed_input'],

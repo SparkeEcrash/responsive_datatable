@@ -39,6 +39,9 @@ $(document).on('click', '#export', function() {
     success: function(data) {
       console.log(data);
       window.location.href= "endpoints/csvExport.php";
+      const message = `CSV file is being downloaded`;
+      $('.modal-body').text(message);
+      $('#messageModal').modal({show:true});
     }
   })
 })
@@ -73,9 +76,19 @@ function filterList() {
   //   $('#global_filter').val()).draw();
 }
 
-function popErrorModal(text=`Something did not work correctly while processing`) {
+function popErrorModal(text=`Something did not work correctly while processing`, list=[]) {
   $('.modal-body').empty();
-  var error_message = $('<p>').text(text);
-  $('.modal-body').append(error_message);
-  $('#messageModal').modal({show:true});
+  if(list.length === 0) {
+    var error_message = $('<p>').text(text);
+    $('.modal-body').append(error_message);
+    $('#messageModal').modal({show:true});
+  } else {
+    const error_list = $('<ul>').addClass('validation_list');
+    list.forEach(function(error) {
+      const error_item = $('<li>').text(error);
+      error_list.append(error_item);
+    });
+    $('.modal-body').append(error_list);
+    $('#messageModal').modal({show:true});
+  }
 }
