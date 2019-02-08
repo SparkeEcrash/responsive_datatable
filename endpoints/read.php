@@ -17,7 +17,7 @@ $output = '';
 if ($_POST['search_value'] === '') {
   $sql= "SELECT * FROM $table";
 }  else {
-  $search = $_POST['search_value'];
+  $search = addslahes($_POST['search_value']);
   $sql = "SELECT * FROM $table WHERE (first_name LIKE '%".$search."%') OR (last_name LIKE '%".$search."%') OR (telephone_number LIKE '%".$search."%') OR (street LIKE '%".$search."%') OR (city LIKE '%".$search."%') OR (state LIKE '%".$search."%') OR (zip_code LIKE '%".$search."%') OR (email_address LIKE '%".$search."%')";
 }
 

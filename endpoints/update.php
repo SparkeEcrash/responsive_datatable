@@ -22,20 +22,20 @@ if(!empty($_FILES)) {
   }
 } else {
   if(!empty($_POST['id'])) {
-    $id = $_POST['id'];
+    $id = addslashes($_POST['id']);
   }
   
   if(!empty($_POST['text'])) {
-    $text = $_POST['text'];
+    $text = addslashes($_POST['text']);
   }
   
   if(!empty($_POST['column_name'])) {
-    $column_name = $_POST['column_name'];
+    $column_name = addslashes($_POST['column_name']);
   }
 }
 
 if(!empty($id) && $column_name === 'image') {
-  $sql = "SELECT * FROM $table WHERE id = '".$_POST['id']."';";
+  $sql = "SELECT * FROM $table WHERE id = $id";
   $result = mysqli_query($connect, $sql);
   if($result) {
     $row = mysqli_fetch_array($result);
