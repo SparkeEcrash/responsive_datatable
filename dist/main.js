@@ -65,7 +65,6 @@ function fetchData(text='', column=null) {
   });
 } 
 
-
 function toggleCSV(id, status) {
   $.ajax({
     url: "./endpoints/csvExport.php",

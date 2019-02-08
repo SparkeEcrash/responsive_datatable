@@ -329,7 +329,6 @@ function validateZipCode(zip_code) {
     }
   });
 
-  
 
   if(temp_zip_code.length !== 5) {
     zip_code_errors.push('Please enter only 5 digits for the Zip Code');
