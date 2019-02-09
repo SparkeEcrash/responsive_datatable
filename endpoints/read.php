@@ -12,21 +12,32 @@ if (!$connect) {
 //   echo "Host information: " . mysqli_get_host_info($connect) . PHP_EOL;
 // }
 
+if( isset($_POST['getID'])) {
+  $getID = $_POST['getID'];
+  if ($getID === 'true') {
+    $id = uniqid('temp_');
+    $search_id = $id;
+  } else {
+    $id = null;
+    $search_id = $getID;
+  }
+}
 
-$output = '';
+$html = '';
 
 if ($_POST['search_value'] === '') {
-  $sql= "SELECT * FROM $table";
+  $sql= "SELECT * FROM $table WHERE user_id = '".$search_id."'";
+
 }  else {
   $search = addslashes($_POST['search_value']);
-  $sql = "SELECT * FROM $table WHERE (first_name LIKE '%".$search."%') OR (last_name LIKE '%".$search."%') OR (telephone_number LIKE '%".$search."%') OR (street LIKE '%".$search."%') OR (city LIKE '%".$search."%') OR (state LIKE '%".$search."%') OR (zip_code LIKE '%".$search."%') OR (email_address LIKE '%".$search."%')";
+  $sql = "SELECT * FROM $table WHERE user_id = $search_id AND (first_name LIKE '%".$search."%') OR (last_name LIKE '%".$search."%') OR (telephone_number LIKE '%".$search."%') OR (street LIKE '%".$search."%') OR (city LIKE '%".$search."%') OR (state LIKE '%".$search."%') OR (zip_code LIKE '%".$search."%') OR (email_address LIKE '%".$search."%')";
 }
 
 $sql .= " ORDER BY first_name ASC";
 
 $result = mysqli_query($connect, $sql);
 
-$output .= '
+$html .= '
   <table id="users_table" class="table table-striped table-bordered">
     <thead>
       <tr class="center_content">
@@ -49,13 +60,13 @@ $output .= '
 
 if(mysqli_num_rows($result) > 0) {
   while($row = mysqli_fetch_array($result)){
-    $output .= '
+    $html .= '
       <tr class="center_content">
         <td><input type="checkbox" data-id="'.$row['id'].'" class="check_status" name="csv_checkbox" value="checked" tabindex="-1" ';
   if($row['csv_export'] === "1") {
-    $output .= 'checked';       
+    $html .= 'checked';       
   }
-    $output .= '/></td>
+    $html .= '/></td>
         <td class="edit_cell first_name" data-id="'.$row['id'].'" spellcheck="false" contenteditable>'.$row['first_name'].'</td>
         <td class="edit_cell last_name" data-id="'.$row['id'].'" spellcheck="false" contenteditable>'.$row['last_name'].'</td>
         <td class="edit_cell telephone_number" data-id="'.$row['id'].'" spellcheck="false" contenteditable>'.$row['telephone_number'].'</td>
@@ -67,25 +78,25 @@ if(mysqli_num_rows($result) > 0) {
         <td class="image_wrap hidden-xs" data-id="'.$row['id'].'" tabindex="-1">';
       //if picture exists
   if($row['image'] === '') {
-    $output .= '
+    $html .= '
       <div class="add_image" id="edit_image">Add Image</div></td>';
   } else {
-    $output .= '
+    $html .= '
       <img class="responsive_image" src="images/'.$row['image'].'"/><div class="edit_image" id="edit_image">Replace</div><div class="remove_image" id="remove_image">Remove</div></td>';
   }
-    $output .= '
+    $html .= '
       <td><button class="btn btn-danger" id="btn_delete" data-id="'.$row['id'].'" tabindex="-1"><span class="glyphicon glyphicon-remove" aria-hidden="true"></button></td>
       </tr>';
   }
 } else {
-  $output .= '
+  $html .= '
     <tr>
       <td class="empty_cell" colspan="12"><h1>Data is empty</h1></td>
     </tr>
   ';
 }
 
-$output .= '
+$html .= '
       <tr class="center_content">
         <td></td>
         <td id="first_name" class="insert_cell" spellcheck="false" contenteditable></td>
@@ -103,29 +114,12 @@ $output .= '
   </table>
 ';
 
-?>
+$output = [
+  'delete_this_id' => $id,
+  'html' => $html
+];
 
-<script>
+$json_output = json_encode($output);
+echo $json_output;
 
-  function checkAll(ele) {
-    var checkboxes = document.getElementsByTagName('input');
-    if (ele.checked) {
-      for(var i = 0; i < checkboxes.length; i++) {
-        if (checkboxes[i].type == 'checkbox') {
-          checkboxes[i].checked = true;
-        }
-      }
-    } else {
-      for(var i = 0; i < checkboxes.length; i++) {
-        if(checkboxes[i].type == 'checkbox') {
-          checkboxes[i].checked = false;
-        }
-      }
-    }
-  }
-
-</script>
-
-<?php
-  echo $output;
 ?>

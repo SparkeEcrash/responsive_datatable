@@ -66,11 +66,13 @@ function fetchData(text='', column=null) {
 
   let data = {search_value: text};
 
-  if(!localStorage.getItem('id')) {
+  if(!localStorage.getItem('delete_this_id')) {
     data['getID'] = true;
+  } else {
+    data['getID'] = localStorage.getItem('delete_this_id');
   }
 
-  console.log(data);
+  console.log('73', data);
 
   $.ajax({
     url: "./endpoints/read.php",
@@ -78,10 +80,35 @@ function fetchData(text='', column=null) {
     data,
     dataType: "json",
     success: function(data) {
-      $('#display_data').html(data);
+      console.log(data);
+      $('#display_data').html(data['html']);
+      console.log(data);
+      if(data['delete_this_id'] !== null) {
+        localStorage.setItem('delete_this_id', data['delete_this_id']);
+      }
+    },
+    error: function(error) {
+      console.log(error);
     }
   });
 } 
+
+function checkAll(ele) {
+  var checkboxes = document.getElementsByTagName('input');
+  if (ele.checked) {
+    for(var i = 0; i < checkboxes.length; i++) {
+      if (checkboxes[i].type == 'checkbox') {
+        checkboxes[i].checked = true;
+      }
+    }
+  } else {
+    for(var i = 0; i < checkboxes.length; i++) {
+      if(checkboxes[i].type == 'checkbox') {
+        checkboxes[i].checked = false;
+      }
+    }
+  }
+}
 
 function toggleCSV(id, status) {
   $.ajax({
