@@ -39,7 +39,7 @@ $output .= '
         <th>State</th>
         <th>Zip Code</th>
         <th>Email Address</th>
-        <th>Image</th>
+        <th class="hidden-xs">Image</th>
         <th></th>
       </tr>
     </thead>
@@ -63,7 +63,7 @@ if(mysqli_num_rows($result) > 0) {
         <td class="edit_cell state" data-id="'.$row['id'].'" spellcheck="false" contenteditable>'.$row['state'].'</td>
         <td class="edit_cell zip_code" data-id="'.$row['id'].'" spellcheck="false" contenteditable>'.$row['zip_code'].'</td>
         <td class="edit_cell email_address" data-id="'.$row['id'].'" spellcheck="false" contenteditable>'.$row['email_address'].'</td>
-        <td class="image_wrap" data-id="'.$row['id'].'" tabindex="-1">';
+        <td class="image_wrap hidden-xs" data-id="'.$row['id'].'" tabindex="-1">';
       //if picture exists
   if($row['image'] === '') {
     $output .= '
@@ -95,7 +95,7 @@ $output .= '
         <td id="state" class="insert_cell" spellcheck="false" contenteditable></td>
         <td id="zip_code" class="insert_cell" spellcheck="false" contenteditable></td>
         <td id="email_address" class="insert_cell" spellcheck="false" contenteditable></td>
-        <td id="image_container"><label class="remove_file_upload">Remove</label><label for="image" class="custom_file_upload">Image</label><input type="file" id="image" style="display: none;"/><div class="image_title"></div></td>
+        <td id="image_container" class="hidden-xs"><label class="remove_file_upload">Remove</label><label for="image" class="custom_file_upload">Image</label><input type="file" id="image" style="display: none;"/><div class="image_title"></div></td>
         <td><button class="btn btn-success" id="btn_add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></button></td>
       </tr>
     </tbody>
