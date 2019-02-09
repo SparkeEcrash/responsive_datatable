@@ -21,13 +21,17 @@ $(document).on('click', '#btn_delete', function() {
 })
 
 $(document).on('click', '#btn_delete_confirmed', function() {
+  if(!checkID()) {
+    return;
+  }
 
   var id = $('#row_id_selected').val();
+  var getID = localStorage.getItem('delete_this_id');
 
   $.ajax({
     url: './endpoints/delete.php',
     method: 'POST',
-    data: {id},
+    data: {id, getID},
     dataType: 'json',
     success: function (data) {
       result = data;

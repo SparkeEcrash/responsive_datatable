@@ -2,8 +2,10 @@
 
 require_once('./../database-connection.php');
 
-$sql = "SELECT * FROM $table WHERE id ='".$_POST['id']."';";
-$sql .= "DELETE FROM $table WHERE id = '".$_POST['id']."';";
+$sql = "SELECT * FROM $table WHERE user_id = '".$_POST['getID']."' AND id ='".$_POST['id']."';";
+$sql .= "DELETE FROM $table WHERE user_id = '".$_POST['getID']."' AND id = '".$_POST['id']."';";
+
+//multi query was used for experimentation even though select is not necessary
 
 $result = mysqli_multi_query($connect, $sql);
 if(!$result) {

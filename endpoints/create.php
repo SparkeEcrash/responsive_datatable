@@ -20,6 +20,8 @@
     $state = addslashes($_POST["state"]);
     $zip_code = addslashes($_POST["zip_code"]);
     $email_address = addslashes($_POST["email_address"]);
+    $email_address = addslashes($_POST["email_address"]);
+    $search_id = addslashes($_POST["getID"]);
   }
 
   if ($_FILES) {
@@ -40,7 +42,7 @@
     $image_name = '';
   }
 
-  $sql = "INSERT INTO $table(first_name, last_name, telephone_number, street, city, state, zip_code, email_address, image) VALUES('".$first_name."', '".$last_name."', '".$telephone_number."', '".$street."', '".$city."', '".$state."', '".$zip_code."', '".$email_address."', '".$image_name."')";
+  $sql = "INSERT INTO $table(first_name, last_name, telephone_number, street, city, state, zip_code, email_address, image, user_id) VALUES('".$first_name."', '".$last_name."', '".$telephone_number."', '".$street."', '".$city."', '".$state."', '".$zip_code."', '".$email_address."', '".$image_name."', '".$search_id."')";
   if(mysqli_query($connect, $sql))
   {
     $output = [
