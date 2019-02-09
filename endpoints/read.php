@@ -19,7 +19,7 @@ if( isset($_POST['getID'])) {
     $search_id = $id;
   } else {
     $id = null;
-    $search_id = $getID;
+    $search_id = addslashes($getID);
   }
 }
 
@@ -30,7 +30,7 @@ if ($_POST['search_value'] === '') {
 
 }  else {
   $search = addslashes($_POST['search_value']);
-  $sql = "SELECT * FROM $table WHERE user_id = $search_id AND (first_name LIKE '%".$search."%') OR (last_name LIKE '%".$search."%') OR (telephone_number LIKE '%".$search."%') OR (street LIKE '%".$search."%') OR (city LIKE '%".$search."%') OR (state LIKE '%".$search."%') OR (zip_code LIKE '%".$search."%') OR (email_address LIKE '%".$search."%')";
+  $sql = "SELECT * FROM $table WHERE user_id = '".$search_id."' AND (first_name LIKE '%".$search."%') OR (last_name LIKE '%".$search."%') OR (telephone_number LIKE '%".$search."%') OR (street LIKE '%".$search."%') OR (city LIKE '%".$search."%') OR (state LIKE '%".$search."%') OR (zip_code LIKE '%".$search."%') OR (email_address LIKE '%".$search."%')";
 }
 
 $sql .= " ORDER BY first_name ASC";
@@ -99,14 +99,14 @@ if(mysqli_num_rows($result) > 0) {
 $html .= '
       <tr class="center_content">
         <td></td>
-        <td id="first_name" class="insert_cell" spellcheck="false" contenteditable></td>
-        <td id="last_name" class="insert_cell" spellcheck="false" contenteditable></td>
-        <td id="telephone_number" class="insert_cell" spellcheck="false" contenteditable></td>
-        <td id="street" class="insert_cell" spellcheck="false" contenteditable></td>
-        <td id="city" class="insert_cell" spellcheck="false"contenteditable></td>
-        <td id="state" class="insert_cell" spellcheck="false" contenteditable></td>
-        <td id="zip_code" class="insert_cell" spellcheck="false" contenteditable></td>
-        <td id="email_address" class="insert_cell" spellcheck="false" contenteditable></td>
+        <td id="first_name" class="insert_cell" spellcheck="false" contenteditable>James</td>
+        <td id="last_name" class="insert_cell" spellcheck="false" contenteditable>Park</td>
+        <td id="telephone_number" class="insert_cell" spellcheck="false" contenteditable>3245963298</td>
+        <td id="street" class="insert_cell" spellcheck="false" contenteditable>28 test st</td>
+        <td id="city" class="insert_cell" spellcheck="false"contenteditable>metropolis</td>
+        <td id="state" class="insert_cell" spellcheck="false" contenteditable>texas</td>
+        <td id="zip_code" class="insert_cell" spellcheck="false" contenteditable>23457</td>
+        <td id="email_address" class="insert_cell" spellcheck="false" contenteditable>test@test.com</td>
         <td id="image_container" class="hidden-xs"><label class="remove_file_upload">Remove</label><label for="image" class="custom_file_upload">Image</label><input type="file" id="image" style="display: none;"/><div class="image_title"></div></td>
         <td><button class="btn btn-success" id="btn_add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></button></td>
       </tr>

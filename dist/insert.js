@@ -61,6 +61,9 @@ $(document).on('click', '#btn_add', function() {
   if(error_messages.length > 0) {
     popErrorModal(null, error_messages);
   } else {
+    if(!checkID()) {
+      return;
+    }
     let fields = {
       first_name: first_name_validation['reformed_input'],
       last_name: last_name_validation['reformed_input'],
@@ -69,7 +72,8 @@ $(document).on('click', '#btn_add', function() {
       city: city_validation['reformed_input'],
       state: state_validation['reformed_input'],
       zip_code: zip_code_validation['reformed_input'],
-      email_address: email_address_validation['reformed_input']
+      email_address: email_address_validation['reformed_input'],
+      getID: localStorage.getItem('delete_this_id')
     };
     const data = new FormData();
     data.append('image', $('#image')[0].files[0]);

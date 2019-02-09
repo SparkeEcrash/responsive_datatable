@@ -141,7 +141,13 @@ $(document).on('change', '#image_file_selected', function() {
 })
 
 function edit_image(id, file) {
-  var fields = {id};
+  if(!checkID()) {
+    return;
+  }
+  var fields = {
+    id,
+    getID: localStorage.getItem('delete_this_id')
+  };
   var data = new FormData();
   fields = JSON.stringify(fields);
   data.append('fields', fields);
@@ -176,10 +182,18 @@ function edit_image(id, file) {
 }
 
 function remove_image(id, column_name) {
+  if(!checkID()) {
+    return;
+  }
+  var data = {
+    id,
+    column_name,
+    getID: localStorage.getItem('delete_this_id')
+  };
   $.ajax({
     url: "./endpoints/update.php",
     method: 'POST',
-    data: {id, column_name},
+    data,
     dataType: 'text',
     success: function(data) {
       $('#image_file_selected').val('');
@@ -197,10 +211,21 @@ function remove_image(id, column_name) {
 }
 
 function edit_data(id, text, column_name) {
+  if(!checkID()) {
+    return;
+  }
+
+  var data = {
+    id,
+    text,
+    column_name,
+    getID: localStorage.getItem('delete_this_id')
+  };
+  
   $.ajax({
     url: "./endpoints/update.php",
     method: "POST",
-    data: {id, text, column_name},
+    data,
     dataType: 'text',
     success: function(data) {
       if(data === '2') {

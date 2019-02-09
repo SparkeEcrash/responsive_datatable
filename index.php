@@ -31,7 +31,7 @@
             <div class="panel-heading">
               <div class="col-xs-8 col-sm-6">
                 <div class="input-group">
-                  <input class="global_filter form-control" id="global_filter" type="text">
+                  <input class="global_filter form-control" id="global_filter" type="text" spellcheck="false">
                   <span class="input-group-btn">
                     <button class="btn btn-default" type="button" id="search">Search</button>
                   </span>

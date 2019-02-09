@@ -55,13 +55,6 @@ $(document).on('click', '#export', function() {
   })
 })
 
-// function setLocalStorage() {
-//   const localStorageID = { 'id': 123};
-//   localStorage.setItem('id', JSON.stringify(localStorageID));
-//   var getID = JSON.parse(localStorage.getItem('id'));
-//   console.log('ID: ', getID['id']);
-// }
-
 function fetchData(text='', column=null) {
 
   let data = {search_value: text};
@@ -72,17 +65,13 @@ function fetchData(text='', column=null) {
     data['getID'] = localStorage.getItem('delete_this_id');
   }
 
-  console.log('73', data);
-
   $.ajax({
     url: "./endpoints/read.php",
     method: "POST",
     data,
     dataType: "json",
     success: function(data) {
-      console.log(data);
       $('#display_data').html(data['html']);
-      console.log(data);
       if(data['delete_this_id'] !== null) {
         localStorage.setItem('delete_this_id', data['delete_this_id']);
       }
@@ -138,5 +127,14 @@ function popErrorModal(text=`Something did not work correctly while processing`,
     });
     $('.modal-body').append(error_list);
     $('#messageModal').modal({show:true});
+  }
+}
+
+function checkID() {
+  if(!localStorage.getItem('delete_this_id')) {
+    popErrorModal('Your automatically generated id is missing');
+    return false;
+  } else {
+    return true;
   }
 }
