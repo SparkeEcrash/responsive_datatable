@@ -30,7 +30,7 @@ if ($_POST['search_value'] === '') {
 
 }  else {
   $search = addslashes($_POST['search_value']);
-  $sql = "SELECT * FROM $table WHERE user_id = '".$search_id."' AND (first_name LIKE '%".$search."%') OR (last_name LIKE '%".$search."%') OR (telephone_number LIKE '%".$search."%') OR (street LIKE '%".$search."%') OR (city LIKE '%".$search."%') OR (state LIKE '%".$search."%') OR (zip_code LIKE '%".$search."%') OR (email_address LIKE '%".$search."%')";
+  $sql = "SELECT * FROM $table WHERE user_id = '".$search_id."' AND ((first_name LIKE '%".$search."%') OR (last_name LIKE '%".$search."%') OR (telephone_number LIKE '%".$search."%') OR (street LIKE '%".$search."%') OR (city LIKE '%".$search."%') OR (state LIKE '%".$search."%') OR (zip_code LIKE '%".$search."%') OR (email_address LIKE '%".$search."%'))";
 }
 
 $sql .= " ORDER BY first_name ASC";
