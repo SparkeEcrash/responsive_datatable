@@ -29,7 +29,7 @@
         <div class="col-xs-12">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <div class="col-xs-6">
+              <div class="col-xs-8 col-sm-6">
                 <div class="input-group">
                   <input class="global_filter form-control" id="global_filter" type="text">
                   <span class="input-group-btn">
@@ -43,7 +43,7 @@
               <button type="button" class="btn btn-info" id="export">CSV Export</button>
               </div>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" style="overflow-x:auto;">
               <div id="display_data"></div>
             </div>
             <div class="panel-footer">
