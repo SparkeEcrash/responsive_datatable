@@ -12,6 +12,7 @@ if (!$connect) {
 //   echo "Host information: " . mysqli_get_host_info($connect) . PHP_EOL;
 // }
 
+
 $output = '';
 
 if ($_POST['search_value'] === '') {

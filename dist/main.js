@@ -1,5 +1,6 @@
 $(document).ready(function() {
   fetchData();
+  // setLocalStorage();
 })
 
 $(document).on('click', '#search', function() {
@@ -54,11 +55,28 @@ $(document).on('click', '#export', function() {
   })
 })
 
+// function setLocalStorage() {
+//   const localStorageID = { 'id': 123};
+//   localStorage.setItem('id', JSON.stringify(localStorageID));
+//   var getID = JSON.parse(localStorage.getItem('id'));
+//   console.log('ID: ', getID['id']);
+// }
+
 function fetchData(text='', column=null) {
+
+  let data = {search_value: text};
+
+  if(!localStorage.getItem('id')) {
+    data['getID'] = true;
+  }
+
+  console.log(data);
+
   $.ajax({
     url: "./endpoints/read.php",
     method: "POST",
-    data: {search_value: text},
+    data,
+    dataType: "json",
     success: function(data) {
       $('#display_data').html(data);
     }
