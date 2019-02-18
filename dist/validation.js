@@ -303,8 +303,6 @@ function validateState(state) {
       reformatted_state = 'not_length_of_two'
   }
 
-  console.log(reformatted_state);
-
   if(reformatted_state.length !== 2) {
     state_errors.push('Please enter a valid state from the United States of America');
     reformatted_state = temp_input_state;
