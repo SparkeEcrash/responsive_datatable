@@ -24,7 +24,7 @@
     <div id="page-wrapper" class="container">
       <div class="row">
         <div class="col-xs-12">
-          <h1 class="page-header text-center">James's PHP MySQL Responsive Datatable</h1>
+          <h1 class="page-header text-center">Contact Directory</h1>
         </div>
       </div>
       <div class="row">
