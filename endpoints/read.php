@@ -45,7 +45,7 @@ $html .= '
         <th width="5%"></th>
         <th>First Name</th>
         <th>Last Name</th>
-        <th>Telephone Number</th>
+        <th>Telephone Number</th> 
         <th>Street</th>
         <th>City</th>
         <th>State</th>
