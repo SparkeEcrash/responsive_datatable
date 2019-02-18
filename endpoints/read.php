@@ -91,7 +91,7 @@ if(mysqli_num_rows($result) > 0) {
 } else {
   $html .= '
     <tr>
-      <td class="empty_cell" colspan="12"><h1>Data is empty</h1></td>
+      <td class="empty_cell" colspan="12"><h1>Fill out the row below and click <button class="btn btn-success" id="btn_add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></button></h1></td>
     </tr>
   ';
 }
