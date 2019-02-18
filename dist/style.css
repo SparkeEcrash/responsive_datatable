@@ -84,9 +84,14 @@ td {
   cursor: pointer;
 }
 
-.edit_image,
-.remove_image {
+.image_options {
+  height: 20vh;
   display: none;
+}
+
+.options_container {
+  width: 8vw;
+  height: 10vh;
 }
 
 .add_image:hover,
@@ -97,23 +102,22 @@ td {
 
 .responsive_image {
   height: 20vh;
-  width: 10vw;
+  width: 8vw;
 }
 
 .edit_image {
-  margin-top: 6vh;
   margin-bottom: 1vh;
+
 }
 
 .remove_image {
   margin-top: 1vh;
-  margin-bottom: 6vh;
-
 }
 
-.image_wrap:hover .edit_image,
-.image_wrap:hover .remove_image {
-  display: block;
+.image_wrap:hover .image_options {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .image_wrap:hover .responsive_image {

@@ -82,7 +82,7 @@ if(mysqli_num_rows($result) > 0) {
       <div class="add_image" id="edit_image">Add Image</div></td>';
   } else {
     $html .= '
-      <img class="responsive_image" src="images/'.$row['image'].'"/><div class="edit_image" id="edit_image">Replace</div><div class="remove_image" id="remove_image">Remove</div></td>';
+      <img class="responsive_image" src="images/'.$row['image'].'"/><div class="image_options"><div class="options_container"><div class="edit_image" id="edit_image">Replace</div><div class="remove_image" id="remove_image">Remove</div></div></div></td>';
   }
     $html .= '
       <td><button class="btn btn-danger" id="btn_delete" data-id="'.$row['id'].'" tabindex="-1"><span class="glyphicon glyphicon-remove" aria-hidden="true"></button></td>
