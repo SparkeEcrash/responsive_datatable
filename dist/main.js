@@ -42,12 +42,16 @@ $(document).on('change', '.check_status', function() {
 })
 
 $(document).on('click', '#export', function() {
+  console.log(localStorage.getItem('delete_this_id'));
   $.ajax({
     url: "./endpoints/csvExport.php",
     method: 'GET',
+    data: {
+      getID: localStorage.getItem('delete_this_id')
+    },
     success: function(data) {
-      console.log(data);
-      window.location.href= "endpoints/csvExport.php";
+      // console.log(data);
+      window.location.href= "endpoints/csvExport.php?getID=" + localStorage.getItem('delete_this_id');
       const message = `CSV file is being downloaded`;
       $('.modal-body').text(message);
       $('#messageModal').modal({show:true});
