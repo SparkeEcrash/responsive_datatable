@@ -9,7 +9,7 @@ $(document).on('blur', '.first_name', function() {
   if(first_name_validation['errors'].length > 0) {
     popErrorModal(null, first_name_validation['errors']);
   } else if(first_name !== $('#data_cell_selected').val()) {
-    var id = $(this).data('id');
+    const id = $(this).data('id');
     edit_data(id, first_name_validation['reformed_input'], 'first_name');
   }
   $(this).text(first_name_validation['reformed_input']);
@@ -21,7 +21,7 @@ $(document).on('blur', '.last_name', function() {
   if(last_name_validation['errors'].length > 0) {
     popErrorModal(null, last_name_validation['errors']);
   } else if(last_name !== $('#data_cell_selected').val()) {
-    var id = $(this).data('id');
+    const id = $(this).data('id');
     edit_data(id, last_name_validation['reformed_input'], 'last_name');
   }
   $(this).text(last_name_validation['reformed_input']);
@@ -104,14 +104,14 @@ $(document).on('blur', '.email_address', function() {
 })
 
 $(document).on('click','#edit_image',function(){
-  var td = $(this).parent();
+  var td = $(this).closest('td');
   var id = td.data('id');
   $('#row_id_selected').val(id);
   $('#image_file_selected').trigger('click');
 });
 
 $(document).on('click','#remove_image',function(){
-  var td = $(this).parent();
+  var td = $(this).closest('td');
   var id = td.data('id');
   var first_name = $(td).siblings('.first_name').html();
   var last_name = $(td).siblings('.last_name').html();
@@ -214,6 +214,8 @@ function edit_data(id, text, column_name) {
   if(!checkID()) {
     return;
   }
+  
+  const prev_value = ($('#data_cell_selected').val());
 
   var data = {
     id,
@@ -230,7 +232,7 @@ function edit_data(id, text, column_name) {
     success: function(data) {
       if(data === '2') {
         $('.modal-body').empty();
-        var edit_confirm_message = $('<p>').text(`Changed to "${text}"`);
+        var edit_confirm_message = $('<p>').text(`Changed from "${prev_value}" to "${text}"`);
         $('.modal-body').append(edit_confirm_message);
         $('#messageModal').modal({show:true});
       } else {
