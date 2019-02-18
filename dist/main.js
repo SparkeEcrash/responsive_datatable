@@ -50,7 +50,6 @@ $(document).on('click', '#export', function() {
       getID: localStorage.getItem('delete_this_id')
     },
     success: function(data) {
-      // console.log(data);
       window.location.href= "endpoints/csvExport.php?getID=" + localStorage.getItem('delete_this_id');
       const message = `CSV file is being downloaded`;
       $('.modal-body').text(message);
