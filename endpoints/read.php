@@ -42,7 +42,7 @@ $html .= '
     <thead>
       <tr class="center_content">
         <!-- <th width="5%"><input type="checkbox" onchange="checkAll(this)" name="chk[]"/></th> --!>
-        <th width="5%">CSV</th>
+        <th width="5%"></th>
         <th>First Name</th>
         <th>Last Name</th>
         <th>Telephone Number</th> 
@@ -88,15 +88,7 @@ if(mysqli_num_rows($result) > 0) {
       <td><button class="btn btn-danger" id="btn_delete" data-id="'.$row['id'].'" tabindex="-1"><span class="glyphicon glyphicon-remove" aria-hidden="true"></button></td>
       </tr>';
   }
-} else {
   $html .= '
-    <tr>
-      <td class="empty_cell" colspan="12"><h1>Fill out the row below and click <button class="btn btn-success" id="btn_add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></button></h1></td>
-    </tr>
-  ';
-}
-
-$html .= '
       <tr class="center_content">
         <td></td>
         <td id="first_name" class="insert_cell" spellcheck="false" contenteditable></td>
@@ -112,7 +104,31 @@ $html .= '
       </tr>
     </tbody>
   </table>
-';
+  ';
+} else {
+  $html .= '
+      <tr class="center_content">
+        <td></td>
+        <td id="first_name" class="insert_cell" spellcheck="false" contenteditable></td>
+        <td id="last_name" class="insert_cell" spellcheck="false" contenteditable></td>
+        <td id="telephone_number" class="insert_cell" spellcheck="false" contenteditable></td>
+        <td id="street" class="insert_cell" spellcheck="false" contenteditable></td>
+        <td id="city" class="insert_cell" spellcheck="false"contenteditable></td>
+        <td id="state" class="insert_cell" spellcheck="false" contenteditable></td>
+        <td id="zip_code" class="insert_cell" spellcheck="false" contenteditable></td>
+        <td id="email_address" class="insert_cell" spellcheck="false" contenteditable></td>
+        <td id="image_container" class="hidden-xs"><label class="remove_file_upload">Remove</label><label for="image" class="custom_file_upload">Image</label><input type="file" id="image" style="display: none;"/><div class="image_title"></div></td>
+        <td><button class="btn btn-success" id="btn_add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></button></td>
+      </tr>
+  ';
+  $html .= '
+      <tr>
+        <td class="empty_cell" colspan="12"><h1>Fill out the row and click <button class="btn btn-success" id="btn_add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></button></h1></td>
+      </tr>
+    </tbody>
+  </table>
+  ';
+}
 
 $output = [
   'delete_this_id' => $id,
