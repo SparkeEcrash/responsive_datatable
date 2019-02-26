@@ -42,6 +42,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 }
 
 if($_SERVER['REQUEST_METHOD'] === 'GET'){
+  if(isset($_GET['getID'])) {
+    $search_id = $_GET['getID'];
+  };
+
   header('Content-Type: text/csv');
   header('Content-Disposition: attachment; filename=user_list.csv');
 
@@ -50,7 +54,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET'){
 
   $csv = fopen("php://output", "w");
   fputcsv($csv, array("First Name", "Last Name", "Telephone Number", "Street", "City", "State", "Zip_Code", "Email_Address"), ',');
-  $query = "SELECT first_name, last_name, telephone_number, street, city, state, zip_code, email_address from $table WHERE csv_export='1' ORDER BY first_name ASC";
+  $query = "SELECT first_name, last_name, telephone_number, street, city, state, zip_code, email_address from $table WHERE user_id = '".$search_id."' AND csv_export='1' ORDER BY first_name ASC";
   $result = mysqli_query($connect, $query);
   if(!$result) {
     $output = [

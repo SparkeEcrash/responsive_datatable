@@ -87,15 +87,15 @@ function validateCity(city) {
 
 function validateState(state) {
   const state_errors = [];
-  let reformatted_state = '';
+  const temp_input_state = state;
 
   if(state === '') {
     state_errors.push('Please enter the State');
   }
 
-  const temp_state = state.toUpperCase();
+  let reformatted_state = state.toUpperCase();
 
-  switch(temp_state) {
+  switch(reformatted_state) {
     case 'ALABAMA':
     case 'AL': 
       reformatted_state = 'AL'
@@ -300,11 +300,12 @@ function validateState(state) {
       reformatted_state = 'WY'
       break;
     default:
-      reformatted_state = state
+      reformatted_state = 'not_length_of_two'
   }
 
   if(reformatted_state.length !== 2) {
     state_errors.push('Please enter a valid state from the United States of America');
+    reformatted_state = temp_input_state;
   }
 
   return ({

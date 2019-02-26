@@ -2,9 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <link rel="shortcut icon" type="image/jpg" href="./images/james_favicon.jpg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>My Datatable</title>
+  <title>Contact Directory</title>
 
   <!-- My Files -->
   <link href="./dist/style.css" rel="stylesheet" type="text/css"/>
@@ -22,7 +24,7 @@
     <div id="page-wrapper" class="container">
       <div class="row">
         <div class="col-xs-12">
-          <h1 class="page-header text-center">James's PHP MySQL Responsive Datatable</h1>
+          <h1 class="page-header text-center">Contact Directory</h1>
         </div>
       </div>
       <div class="row">
@@ -31,7 +33,7 @@
             <div class="panel-heading">
               <div class="col-xs-8 col-sm-6">
                 <div class="input-group">
-                  <input class="global_filter form-control" id="global_filter" type="text">
+                  <input class="global_filter form-control" id="global_filter" type="text" spellcheck="false">
                   <span class="input-group-btn">
                     <button class="btn btn-default" type="button" id="search">Search</button>
                   </span>

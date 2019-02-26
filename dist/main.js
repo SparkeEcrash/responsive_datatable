@@ -1,5 +1,6 @@
 $(document).ready(function() {
   fetchData();
+  // setLocalStorage();
 })
 
 $(document).on('click', '#search', function() {
@@ -41,12 +42,15 @@ $(document).on('change', '.check_status', function() {
 })
 
 $(document).on('click', '#export', function() {
+  console.log(localStorage.getItem('delete_this_id'));
   $.ajax({
     url: "./endpoints/csvExport.php",
     method: 'GET',
+    data: {
+      getID: localStorage.getItem('delete_this_id')
+    },
     success: function(data) {
-      console.log(data);
-      window.location.href= "endpoints/csvExport.php";
+      window.location.href= "endpoints/csvExport.php?getID=" + localStorage.getItem('delete_this_id');
       const message = `CSV file is being downloaded`;
       $('.modal-body').text(message);
       $('#messageModal').modal({show:true});
@@ -55,15 +59,48 @@ $(document).on('click', '#export', function() {
 })
 
 function fetchData(text='', column=null) {
+
+  let data = {search_value: text};
+
+  if(!localStorage.getItem('delete_this_id')) {
+    data['getID'] = true;
+  } else {
+    data['getID'] = localStorage.getItem('delete_this_id');
+  }
+
   $.ajax({
     url: "./endpoints/read.php",
     method: "POST",
-    data: {search_value: text},
+    data,
+    dataType: "json",
     success: function(data) {
-      $('#display_data').html(data);
+      $('#display_data').html(data['html']);
+      if(data['delete_this_id'] !== null) {
+        localStorage.setItem('delete_this_id', data['delete_this_id']);
+      }
+    },
+    error: function(error) {
+      console.log(error);
     }
   });
 } 
+
+function checkAll(ele) {
+  var checkboxes = document.getElementsByTagName('input');
+  if (ele.checked) {
+    for(var i = 0; i < checkboxes.length; i++) {
+      if (checkboxes[i].type == 'checkbox') {
+        checkboxes[i].checked = true;
+      }
+    }
+  } else {
+    for(var i = 0; i < checkboxes.length; i++) {
+      if(checkboxes[i].type == 'checkbox') {
+        checkboxes[i].checked = false;
+      }
+    }
+  }
+}
 
 function toggleCSV(id, status) {
   $.ajax({
@@ -93,5 +130,14 @@ function popErrorModal(text=`Something did not work correctly while processing`,
     });
     $('.modal-body').append(error_list);
     $('#messageModal').modal({show:true});
+  }
+}
+
+function checkID() {
+  if(!localStorage.getItem('delete_this_id')) {
+    popErrorModal('Your automatically generated id is missing');
+    return false;
+  } else {
+    return true;
   }
 }
